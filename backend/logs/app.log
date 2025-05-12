@@ -1,0 +1,1620 @@
+2025-05-12 17:07:52 - root - ERROR - /Users/comet39/SKN_PJT/3rd_project/backend/app.py:41 - Unhandled exception: (pymysql.err.OperationalError) (1054, "Unknown column 'countries.flag_url' in 'field list'")
+[SQL: SELECT countries.id, countries.name, countries.code, countries.flag_url, countries.description, countries.enabled, countries.created_at, countries.updated_at 
+FROM countries 
+WHERE countries.enabled = true ORDER BY countries.name]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+Traceback (most recent call last):
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1964, in _exec_single_context
+    self.dialect.do_execute(
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/sqlalchemy/engine/default.py", line 945, in do_execute
+    cursor.execute(statement, parameters)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/cursors.py", line 153, in execute
+    result = self._query(query)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/cursors.py", line 322, in _query
+    conn.query(q)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/connections.py", line 563, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/connections.py", line 825, in _read_query_result
+    result.read()
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/connections.py", line 1199, in read
+    first_packet = self.connection._read_packet()
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/connections.py", line 775, in _read_packet
+    packet.raise_for_error()
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/protocol.py", line 219, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/err.py", line 150, in raise_mysql_exception
+    raise errorclass(errno, errval)
+pymysql.err.OperationalError: (1054, "Unknown column 'countries.flag_url' in 'field list'")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/middleware/errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/middleware/cors.py", line 93, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/middleware/cors.py", line 144, in simple_response
+    await self.app(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/middleware/exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/routing.py", line 714, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/routing.py", line 734, in app
+    await route.handle(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/routing.py", line 73, in app
+    response = await f(request)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/fastapi/routing.py", line 301, in app
+    raw_response = await run_endpoint_function(
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/fastapi/routing.py", line 212, in run_endpoint_function
+    return await dependant.call(**values)
+  File "/Users/comet39/SKN_PJT/3rd_project/backend/api/metadata.py", line 88, in get_countries
+    countries = db.execute(statement).scalars().all()
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 2365, in execute
+    return self._execute_internal(
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 2251, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/sqlalchemy/orm/context.py", line 306, in orm_execute_statement
+    result = conn.execute(
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1416, in execute
+    return meth(
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/sqlalchemy/sql/elements.py", line 523, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1638, in _execute_clauseelement
+    ret = self._execute_context(
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1843, in _execute_context
+    return self._exec_single_context(
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1983, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 2352, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1964, in _exec_single_context
+    self.dialect.do_execute(
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/sqlalchemy/engine/default.py", line 945, in do_execute
+    cursor.execute(statement, parameters)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/cursors.py", line 153, in execute
+    result = self._query(query)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/cursors.py", line 322, in _query
+    conn.query(q)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/connections.py", line 563, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/connections.py", line 825, in _read_query_result
+    result.read()
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/connections.py", line 1199, in read
+    first_packet = self.connection._read_packet()
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/connections.py", line 775, in _read_packet
+    packet.raise_for_error()
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/protocol.py", line 219, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/err.py", line 150, in raise_mysql_exception
+    raise errorclass(errno, errval)
+sqlalchemy.exc.OperationalError: (pymysql.err.OperationalError) (1054, "Unknown column 'countries.flag_url' in 'field list'")
+[SQL: SELECT countries.id, countries.name, countries.code, countries.flag_url, countries.description, countries.enabled, countries.created_at, countries.updated_at 
+FROM countries 
+WHERE countries.enabled = true ORDER BY countries.name]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-05-12 17:07:52 - root - ERROR - /Users/comet39/SKN_PJT/3rd_project/backend/app.py:41 - Unhandled exception: (pymysql.err.OperationalError) (1054, "Unknown column 'topics.description' in 'field list'")
+[SQL: SELECT topics.id, topics.name, topics.code, topics.description, topics.icon, topics.enabled, topics.created_at, topics.updated_at 
+FROM topics 
+WHERE topics.enabled = true ORDER BY topics.name]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+Traceback (most recent call last):
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1964, in _exec_single_context
+    self.dialect.do_execute(
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/sqlalchemy/engine/default.py", line 945, in do_execute
+    cursor.execute(statement, parameters)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/cursors.py", line 153, in execute
+    result = self._query(query)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/cursors.py", line 322, in _query
+    conn.query(q)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/connections.py", line 563, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/connections.py", line 825, in _read_query_result
+    result.read()
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/connections.py", line 1199, in read
+    first_packet = self.connection._read_packet()
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/connections.py", line 775, in _read_packet
+    packet.raise_for_error()
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/protocol.py", line 219, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/err.py", line 150, in raise_mysql_exception
+    raise errorclass(errno, errval)
+pymysql.err.OperationalError: (1054, "Unknown column 'topics.description' in 'field list'")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/middleware/errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/middleware/cors.py", line 93, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/middleware/cors.py", line 144, in simple_response
+    await self.app(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/middleware/exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/routing.py", line 714, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/routing.py", line 734, in app
+    await route.handle(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/routing.py", line 73, in app
+    response = await f(request)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/fastapi/routing.py", line 301, in app
+    raw_response = await run_endpoint_function(
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/fastapi/routing.py", line 212, in run_endpoint_function
+    return await dependant.call(**values)
+  File "/Users/comet39/SKN_PJT/3rd_project/backend/api/metadata.py", line 180, in get_topics
+    topics = db.execute(statement).scalars().all()
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 2365, in execute
+    return self._execute_internal(
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 2251, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/sqlalchemy/orm/context.py", line 306, in orm_execute_statement
+    result = conn.execute(
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1416, in execute
+    return meth(
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/sqlalchemy/sql/elements.py", line 523, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1638, in _execute_clauseelement
+    ret = self._execute_context(
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1843, in _execute_context
+    return self._exec_single_context(
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1983, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 2352, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1964, in _exec_single_context
+    self.dialect.do_execute(
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/sqlalchemy/engine/default.py", line 945, in do_execute
+    cursor.execute(statement, parameters)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/cursors.py", line 153, in execute
+    result = self._query(query)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/cursors.py", line 322, in _query
+    conn.query(q)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/connections.py", line 563, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/connections.py", line 825, in _read_query_result
+    result.read()
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/connections.py", line 1199, in read
+    first_packet = self.connection._read_packet()
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/connections.py", line 775, in _read_packet
+    packet.raise_for_error()
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/protocol.py", line 219, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/err.py", line 150, in raise_mysql_exception
+    raise errorclass(errno, errval)
+sqlalchemy.exc.OperationalError: (pymysql.err.OperationalError) (1054, "Unknown column 'topics.description' in 'field list'")
+[SQL: SELECT topics.id, topics.name, topics.code, topics.description, topics.icon, topics.enabled, topics.created_at, topics.updated_at 
+FROM topics 
+WHERE topics.enabled = true ORDER BY topics.name]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-05-12 17:07:52 - root - ERROR - /Users/comet39/SKN_PJT/3rd_project/backend/app.py:41 - Unhandled exception: (pymysql.err.OperationalError) (1054, "Unknown column 'countries.flag_url' in 'field list'")
+[SQL: SELECT countries.id, countries.name, countries.code, countries.flag_url, countries.description, countries.enabled, countries.created_at, countries.updated_at 
+FROM countries 
+WHERE countries.enabled = true ORDER BY countries.name]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+Traceback (most recent call last):
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1964, in _exec_single_context
+    self.dialect.do_execute(
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/sqlalchemy/engine/default.py", line 945, in do_execute
+    cursor.execute(statement, parameters)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/cursors.py", line 153, in execute
+    result = self._query(query)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/cursors.py", line 322, in _query
+    conn.query(q)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/connections.py", line 563, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/connections.py", line 825, in _read_query_result
+    result.read()
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/connections.py", line 1199, in read
+    first_packet = self.connection._read_packet()
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/connections.py", line 775, in _read_packet
+    packet.raise_for_error()
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/protocol.py", line 219, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/err.py", line 150, in raise_mysql_exception
+    raise errorclass(errno, errval)
+pymysql.err.OperationalError: (1054, "Unknown column 'countries.flag_url' in 'field list'")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/middleware/errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/middleware/cors.py", line 93, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/middleware/cors.py", line 144, in simple_response
+    await self.app(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/middleware/exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/routing.py", line 714, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/routing.py", line 734, in app
+    await route.handle(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/routing.py", line 73, in app
+    response = await f(request)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/fastapi/routing.py", line 301, in app
+    raw_response = await run_endpoint_function(
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/fastapi/routing.py", line 212, in run_endpoint_function
+    return await dependant.call(**values)
+  File "/Users/comet39/SKN_PJT/3rd_project/backend/api/metadata.py", line 88, in get_countries
+    countries = db.execute(statement).scalars().all()
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 2365, in execute
+    return self._execute_internal(
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 2251, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/sqlalchemy/orm/context.py", line 306, in orm_execute_statement
+    result = conn.execute(
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1416, in execute
+    return meth(
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/sqlalchemy/sql/elements.py", line 523, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1638, in _execute_clauseelement
+    ret = self._execute_context(
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1843, in _execute_context
+    return self._exec_single_context(
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1983, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 2352, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1964, in _exec_single_context
+    self.dialect.do_execute(
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/sqlalchemy/engine/default.py", line 945, in do_execute
+    cursor.execute(statement, parameters)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/cursors.py", line 153, in execute
+    result = self._query(query)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/cursors.py", line 322, in _query
+    conn.query(q)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/connections.py", line 563, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/connections.py", line 825, in _read_query_result
+    result.read()
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/connections.py", line 1199, in read
+    first_packet = self.connection._read_packet()
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/connections.py", line 775, in _read_packet
+    packet.raise_for_error()
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/protocol.py", line 219, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/err.py", line 150, in raise_mysql_exception
+    raise errorclass(errno, errval)
+sqlalchemy.exc.OperationalError: (pymysql.err.OperationalError) (1054, "Unknown column 'countries.flag_url' in 'field list'")
+[SQL: SELECT countries.id, countries.name, countries.code, countries.flag_url, countries.description, countries.enabled, countries.created_at, countries.updated_at 
+FROM countries 
+WHERE countries.enabled = true ORDER BY countries.name]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-05-12 17:07:52 - root - ERROR - /Users/comet39/SKN_PJT/3rd_project/backend/app.py:41 - Unhandled exception: (pymysql.err.OperationalError) (1054, "Unknown column 'topics.description' in 'field list'")
+[SQL: SELECT topics.id, topics.name, topics.code, topics.description, topics.icon, topics.enabled, topics.created_at, topics.updated_at 
+FROM topics 
+WHERE topics.enabled = true ORDER BY topics.name]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+Traceback (most recent call last):
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1964, in _exec_single_context
+    self.dialect.do_execute(
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/sqlalchemy/engine/default.py", line 945, in do_execute
+    cursor.execute(statement, parameters)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/cursors.py", line 153, in execute
+    result = self._query(query)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/cursors.py", line 322, in _query
+    conn.query(q)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/connections.py", line 563, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/connections.py", line 825, in _read_query_result
+    result.read()
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/connections.py", line 1199, in read
+    first_packet = self.connection._read_packet()
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/connections.py", line 775, in _read_packet
+    packet.raise_for_error()
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/protocol.py", line 219, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/err.py", line 150, in raise_mysql_exception
+    raise errorclass(errno, errval)
+pymysql.err.OperationalError: (1054, "Unknown column 'topics.description' in 'field list'")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/middleware/errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/middleware/cors.py", line 93, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/middleware/cors.py", line 144, in simple_response
+    await self.app(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/middleware/exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/routing.py", line 714, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/routing.py", line 734, in app
+    await route.handle(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/routing.py", line 73, in app
+    response = await f(request)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/fastapi/routing.py", line 301, in app
+    raw_response = await run_endpoint_function(
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/fastapi/routing.py", line 212, in run_endpoint_function
+    return await dependant.call(**values)
+  File "/Users/comet39/SKN_PJT/3rd_project/backend/api/metadata.py", line 180, in get_topics
+    topics = db.execute(statement).scalars().all()
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 2365, in execute
+    return self._execute_internal(
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 2251, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/sqlalchemy/orm/context.py", line 306, in orm_execute_statement
+    result = conn.execute(
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1416, in execute
+    return meth(
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/sqlalchemy/sql/elements.py", line 523, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1638, in _execute_clauseelement
+    ret = self._execute_context(
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1843, in _execute_context
+    return self._exec_single_context(
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1983, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 2352, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1964, in _exec_single_context
+    self.dialect.do_execute(
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/sqlalchemy/engine/default.py", line 945, in do_execute
+    cursor.execute(statement, parameters)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/cursors.py", line 153, in execute
+    result = self._query(query)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/cursors.py", line 322, in _query
+    conn.query(q)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/connections.py", line 563, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/connections.py", line 825, in _read_query_result
+    result.read()
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/connections.py", line 1199, in read
+    first_packet = self.connection._read_packet()
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/connections.py", line 775, in _read_packet
+    packet.raise_for_error()
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/protocol.py", line 219, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/err.py", line 150, in raise_mysql_exception
+    raise errorclass(errno, errval)
+sqlalchemy.exc.OperationalError: (pymysql.err.OperationalError) (1054, "Unknown column 'topics.description' in 'field list'")
+[SQL: SELECT topics.id, topics.name, topics.code, topics.description, topics.icon, topics.enabled, topics.created_at, topics.updated_at 
+FROM topics 
+WHERE topics.enabled = true ORDER BY topics.name]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-05-12 17:08:05 - root - ERROR - /Users/comet39/SKN_PJT/3rd_project/backend/app.py:41 - Unhandled exception: (pymysql.err.OperationalError) (1054, "Unknown column 'countries.flag_url' in 'field list'")
+[SQL: SELECT countries.id, countries.name, countries.code, countries.flag_url, countries.description, countries.enabled, countries.created_at, countries.updated_at 
+FROM countries 
+WHERE countries.enabled = true ORDER BY countries.name]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+Traceback (most recent call last):
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1964, in _exec_single_context
+    self.dialect.do_execute(
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/sqlalchemy/engine/default.py", line 945, in do_execute
+    cursor.execute(statement, parameters)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/cursors.py", line 153, in execute
+    result = self._query(query)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/cursors.py", line 322, in _query
+    conn.query(q)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/connections.py", line 563, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/connections.py", line 825, in _read_query_result
+    result.read()
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/connections.py", line 1199, in read
+    first_packet = self.connection._read_packet()
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/connections.py", line 775, in _read_packet
+    packet.raise_for_error()
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/protocol.py", line 219, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/err.py", line 150, in raise_mysql_exception
+    raise errorclass(errno, errval)
+pymysql.err.OperationalError: (1054, "Unknown column 'countries.flag_url' in 'field list'")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/middleware/errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/middleware/cors.py", line 93, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/middleware/cors.py", line 144, in simple_response
+    await self.app(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/middleware/exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/routing.py", line 714, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/routing.py", line 734, in app
+    await route.handle(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/routing.py", line 73, in app
+    response = await f(request)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/fastapi/routing.py", line 301, in app
+    raw_response = await run_endpoint_function(
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/fastapi/routing.py", line 212, in run_endpoint_function
+    return await dependant.call(**values)
+  File "/Users/comet39/SKN_PJT/3rd_project/backend/api/metadata.py", line 88, in get_countries
+    countries = db.execute(statement).scalars().all()
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 2365, in execute
+    return self._execute_internal(
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 2251, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/sqlalchemy/orm/context.py", line 306, in orm_execute_statement
+    result = conn.execute(
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1416, in execute
+    return meth(
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/sqlalchemy/sql/elements.py", line 523, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1638, in _execute_clauseelement
+    ret = self._execute_context(
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1843, in _execute_context
+    return self._exec_single_context(
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1983, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 2352, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1964, in _exec_single_context
+    self.dialect.do_execute(
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/sqlalchemy/engine/default.py", line 945, in do_execute
+    cursor.execute(statement, parameters)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/cursors.py", line 153, in execute
+    result = self._query(query)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/cursors.py", line 322, in _query
+    conn.query(q)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/connections.py", line 563, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/connections.py", line 825, in _read_query_result
+    result.read()
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/connections.py", line 1199, in read
+    first_packet = self.connection._read_packet()
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/connections.py", line 775, in _read_packet
+    packet.raise_for_error()
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/protocol.py", line 219, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/err.py", line 150, in raise_mysql_exception
+    raise errorclass(errno, errval)
+sqlalchemy.exc.OperationalError: (pymysql.err.OperationalError) (1054, "Unknown column 'countries.flag_url' in 'field list'")
+[SQL: SELECT countries.id, countries.name, countries.code, countries.flag_url, countries.description, countries.enabled, countries.created_at, countries.updated_at 
+FROM countries 
+WHERE countries.enabled = true ORDER BY countries.name]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-05-12 17:08:05 - root - ERROR - /Users/comet39/SKN_PJT/3rd_project/backend/app.py:41 - Unhandled exception: (pymysql.err.OperationalError) (1054, "Unknown column 'topics.description' in 'field list'")
+[SQL: SELECT topics.id, topics.name, topics.code, topics.description, topics.icon, topics.enabled, topics.created_at, topics.updated_at 
+FROM topics 
+WHERE topics.enabled = true ORDER BY topics.name]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+Traceback (most recent call last):
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1964, in _exec_single_context
+    self.dialect.do_execute(
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/sqlalchemy/engine/default.py", line 945, in do_execute
+    cursor.execute(statement, parameters)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/cursors.py", line 153, in execute
+    result = self._query(query)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/cursors.py", line 322, in _query
+    conn.query(q)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/connections.py", line 563, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/connections.py", line 825, in _read_query_result
+    result.read()
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/connections.py", line 1199, in read
+    first_packet = self.connection._read_packet()
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/connections.py", line 775, in _read_packet
+    packet.raise_for_error()
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/protocol.py", line 219, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/err.py", line 150, in raise_mysql_exception
+    raise errorclass(errno, errval)
+pymysql.err.OperationalError: (1054, "Unknown column 'topics.description' in 'field list'")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/middleware/errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/middleware/cors.py", line 93, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/middleware/cors.py", line 144, in simple_response
+    await self.app(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/middleware/exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/routing.py", line 714, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/routing.py", line 734, in app
+    await route.handle(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/routing.py", line 73, in app
+    response = await f(request)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/fastapi/routing.py", line 301, in app
+    raw_response = await run_endpoint_function(
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/fastapi/routing.py", line 212, in run_endpoint_function
+    return await dependant.call(**values)
+  File "/Users/comet39/SKN_PJT/3rd_project/backend/api/metadata.py", line 180, in get_topics
+    topics = db.execute(statement).scalars().all()
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 2365, in execute
+    return self._execute_internal(
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 2251, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/sqlalchemy/orm/context.py", line 306, in orm_execute_statement
+    result = conn.execute(
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1416, in execute
+    return meth(
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/sqlalchemy/sql/elements.py", line 523, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1638, in _execute_clauseelement
+    ret = self._execute_context(
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1843, in _execute_context
+    return self._exec_single_context(
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1983, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 2352, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1964, in _exec_single_context
+    self.dialect.do_execute(
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/sqlalchemy/engine/default.py", line 945, in do_execute
+    cursor.execute(statement, parameters)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/cursors.py", line 153, in execute
+    result = self._query(query)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/cursors.py", line 322, in _query
+    conn.query(q)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/connections.py", line 563, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/connections.py", line 825, in _read_query_result
+    result.read()
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/connections.py", line 1199, in read
+    first_packet = self.connection._read_packet()
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/connections.py", line 775, in _read_packet
+    packet.raise_for_error()
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/protocol.py", line 219, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/err.py", line 150, in raise_mysql_exception
+    raise errorclass(errno, errval)
+sqlalchemy.exc.OperationalError: (pymysql.err.OperationalError) (1054, "Unknown column 'topics.description' in 'field list'")
+[SQL: SELECT topics.id, topics.name, topics.code, topics.description, topics.icon, topics.enabled, topics.created_at, topics.updated_at 
+FROM topics 
+WHERE topics.enabled = true ORDER BY topics.name]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-05-12 17:09:33 - root - ERROR - /Users/comet39/SKN_PJT/3rd_project/backend/app.py:41 - Unhandled exception: (pymysql.err.OperationalError) (1054, "Unknown column 'countries.flag_url' in 'field list'")
+[SQL: SELECT countries.id, countries.name, countries.code, countries.flag_url, countries.description, countries.enabled, countries.created_at, countries.updated_at 
+FROM countries 
+WHERE countries.enabled = true ORDER BY countries.name]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+Traceback (most recent call last):
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1964, in _exec_single_context
+    self.dialect.do_execute(
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/sqlalchemy/engine/default.py", line 945, in do_execute
+    cursor.execute(statement, parameters)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/cursors.py", line 153, in execute
+    result = self._query(query)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/cursors.py", line 322, in _query
+    conn.query(q)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/connections.py", line 563, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/connections.py", line 825, in _read_query_result
+    result.read()
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/connections.py", line 1199, in read
+    first_packet = self.connection._read_packet()
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/connections.py", line 775, in _read_packet
+    packet.raise_for_error()
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/protocol.py", line 219, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/err.py", line 150, in raise_mysql_exception
+    raise errorclass(errno, errval)
+pymysql.err.OperationalError: (1054, "Unknown column 'countries.flag_url' in 'field list'")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/middleware/errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/middleware/cors.py", line 93, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/middleware/cors.py", line 144, in simple_response
+    await self.app(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/middleware/exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/routing.py", line 714, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/routing.py", line 734, in app
+    await route.handle(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/routing.py", line 73, in app
+    response = await f(request)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/fastapi/routing.py", line 301, in app
+    raw_response = await run_endpoint_function(
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/fastapi/routing.py", line 212, in run_endpoint_function
+    return await dependant.call(**values)
+  File "/Users/comet39/SKN_PJT/3rd_project/backend/api/metadata.py", line 88, in get_countries
+    countries = db.execute(statement).scalars().all()
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 2365, in execute
+    return self._execute_internal(
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 2251, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/sqlalchemy/orm/context.py", line 306, in orm_execute_statement
+    result = conn.execute(
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1416, in execute
+    return meth(
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/sqlalchemy/sql/elements.py", line 523, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1638, in _execute_clauseelement
+    ret = self._execute_context(
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1843, in _execute_context
+    return self._exec_single_context(
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1983, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 2352, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1964, in _exec_single_context
+    self.dialect.do_execute(
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/sqlalchemy/engine/default.py", line 945, in do_execute
+    cursor.execute(statement, parameters)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/cursors.py", line 153, in execute
+    result = self._query(query)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/cursors.py", line 322, in _query
+    conn.query(q)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/connections.py", line 563, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/connections.py", line 825, in _read_query_result
+    result.read()
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/connections.py", line 1199, in read
+    first_packet = self.connection._read_packet()
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/connections.py", line 775, in _read_packet
+    packet.raise_for_error()
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/protocol.py", line 219, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/err.py", line 150, in raise_mysql_exception
+    raise errorclass(errno, errval)
+sqlalchemy.exc.OperationalError: (pymysql.err.OperationalError) (1054, "Unknown column 'countries.flag_url' in 'field list'")
+[SQL: SELECT countries.id, countries.name, countries.code, countries.flag_url, countries.description, countries.enabled, countries.created_at, countries.updated_at 
+FROM countries 
+WHERE countries.enabled = true ORDER BY countries.name]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-05-12 17:09:33 - root - ERROR - /Users/comet39/SKN_PJT/3rd_project/backend/app.py:41 - Unhandled exception: (pymysql.err.OperationalError) (1054, "Unknown column 'topics.description' in 'field list'")
+[SQL: SELECT topics.id, topics.name, topics.code, topics.description, topics.icon, topics.enabled, topics.created_at, topics.updated_at 
+FROM topics 
+WHERE topics.enabled = true ORDER BY topics.name]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+Traceback (most recent call last):
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1964, in _exec_single_context
+    self.dialect.do_execute(
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/sqlalchemy/engine/default.py", line 945, in do_execute
+    cursor.execute(statement, parameters)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/cursors.py", line 153, in execute
+    result = self._query(query)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/cursors.py", line 322, in _query
+    conn.query(q)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/connections.py", line 563, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/connections.py", line 825, in _read_query_result
+    result.read()
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/connections.py", line 1199, in read
+    first_packet = self.connection._read_packet()
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/connections.py", line 775, in _read_packet
+    packet.raise_for_error()
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/protocol.py", line 219, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/err.py", line 150, in raise_mysql_exception
+    raise errorclass(errno, errval)
+pymysql.err.OperationalError: (1054, "Unknown column 'topics.description' in 'field list'")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/middleware/errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/middleware/cors.py", line 93, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/middleware/cors.py", line 144, in simple_response
+    await self.app(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/middleware/exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/routing.py", line 714, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/routing.py", line 734, in app
+    await route.handle(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/routing.py", line 73, in app
+    response = await f(request)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/fastapi/routing.py", line 301, in app
+    raw_response = await run_endpoint_function(
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/fastapi/routing.py", line 212, in run_endpoint_function
+    return await dependant.call(**values)
+  File "/Users/comet39/SKN_PJT/3rd_project/backend/api/metadata.py", line 180, in get_topics
+    topics = db.execute(statement).scalars().all()
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 2365, in execute
+    return self._execute_internal(
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 2251, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/sqlalchemy/orm/context.py", line 306, in orm_execute_statement
+    result = conn.execute(
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1416, in execute
+    return meth(
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/sqlalchemy/sql/elements.py", line 523, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1638, in _execute_clauseelement
+    ret = self._execute_context(
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1843, in _execute_context
+    return self._exec_single_context(
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1983, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 2352, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1964, in _exec_single_context
+    self.dialect.do_execute(
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/sqlalchemy/engine/default.py", line 945, in do_execute
+    cursor.execute(statement, parameters)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/cursors.py", line 153, in execute
+    result = self._query(query)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/cursors.py", line 322, in _query
+    conn.query(q)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/connections.py", line 563, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/connections.py", line 825, in _read_query_result
+    result.read()
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/connections.py", line 1199, in read
+    first_packet = self.connection._read_packet()
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/connections.py", line 775, in _read_packet
+    packet.raise_for_error()
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/protocol.py", line 219, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pymysql/err.py", line 150, in raise_mysql_exception
+    raise errorclass(errno, errval)
+sqlalchemy.exc.OperationalError: (pymysql.err.OperationalError) (1054, "Unknown column 'topics.description' in 'field list'")
+[SQL: SELECT topics.id, topics.name, topics.code, topics.description, topics.icon, topics.enabled, topics.created_at, topics.updated_at 
+FROM topics 
+WHERE topics.enabled = true ORDER BY topics.name]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-05-12 17:14:15 - root - ERROR - /Users/comet39/SKN_PJT/3rd_project/backend/app.py:41 - Unhandled exception: 'ConversationCreate' object has no attribute 'metadata'
+Traceback (most recent call last):
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/middleware/errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/middleware/cors.py", line 93, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/middleware/cors.py", line 144, in simple_response
+    await self.app(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/middleware/exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/routing.py", line 714, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/routing.py", line 734, in app
+    await route.handle(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/routing.py", line 73, in app
+    response = await f(request)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/fastapi/routing.py", line 301, in app
+    raw_response = await run_endpoint_function(
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/fastapi/routing.py", line 212, in run_endpoint_function
+    return await dependant.call(**values)
+  File "/Users/comet39/SKN_PJT/3rd_project/backend/api/chat.py", line 57, in create_conversation
+    metadata=data.metadata
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pydantic/main.py", line 989, in __getattr__
+    raise AttributeError(f'{type(self).__name__!r} object has no attribute {item!r}')
+AttributeError: 'ConversationCreate' object has no attribute 'metadata'
+2025-05-12 17:14:28 - root - ERROR - /Users/comet39/SKN_PJT/3rd_project/backend/app.py:41 - Unhandled exception: 'ConversationCreate' object has no attribute 'metadata'
+Traceback (most recent call last):
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/middleware/errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/middleware/cors.py", line 93, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/middleware/cors.py", line 144, in simple_response
+    await self.app(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/middleware/exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/routing.py", line 714, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/routing.py", line 734, in app
+    await route.handle(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/routing.py", line 73, in app
+    response = await f(request)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/fastapi/routing.py", line 301, in app
+    raw_response = await run_endpoint_function(
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/fastapi/routing.py", line 212, in run_endpoint_function
+    return await dependant.call(**values)
+  File "/Users/comet39/SKN_PJT/3rd_project/backend/api/chat.py", line 57, in create_conversation
+    metadata=data.metadata
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pydantic/main.py", line 989, in __getattr__
+    raise AttributeError(f'{type(self).__name__!r} object has no attribute {item!r}')
+AttributeError: 'ConversationCreate' object has no attribute 'metadata'
+2025-05-12 17:14:32 - httpx - INFO - /opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/httpx/_client.py:1013 - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-12 17:14:32 - modules.rag.context_builder - INFO - /Users/comet39/SKN_PJT/3rd_project/backend/modules/rag/context_builder.py:120 - Built context with 0 tokens from 0 chunks
+2025-05-12 17:14:36 - root - ERROR - /Users/comet39/SKN_PJT/3rd_project/backend/app.py:41 - Unhandled exception: RetryError[<Future at 0x154611880 state=finished raised AttributeError>]
+Traceback (most recent call last):
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/tenacity/_asyncio.py", line 50, in __call__
+    result = await fn(*args, **kwargs)
+  File "/Users/comet39/SKN_PJT/3rd_project/backend/modules/llm/interface.py", line 111, in generate_response
+    return await self._generate_gemini_response(messages)
+AttributeError: 'LLMInterface' object has no attribute '_generate_gemini_response'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/middleware/errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/middleware/cors.py", line 93, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/middleware/cors.py", line 144, in simple_response
+    await self.app(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/middleware/exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/routing.py", line 714, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/routing.py", line 734, in app
+    await route.handle(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/routing.py", line 73, in app
+    response = await f(request)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/fastapi/routing.py", line 301, in app
+    raw_response = await run_endpoint_function(
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/fastapi/routing.py", line 212, in run_endpoint_function
+    return await dependant.call(**values)
+  File "/Users/comet39/SKN_PJT/3rd_project/backend/api/chat.py", line 140, in process_message
+    response_text = await llm.generate_response(
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/tenacity/_asyncio.py", line 88, in async_wrapped
+    return await fn(*args, **kwargs)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/tenacity/_asyncio.py", line 47, in __call__
+    do = self.iter(retry_state=retry_state)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/tenacity/__init__.py", line 326, in iter
+    raise retry_exc from fut.exception()
+tenacity.RetryError: RetryError[<Future at 0x154611880 state=finished raised AttributeError>]
+2025-05-12 17:15:53 - root - ERROR - /Users/comet39/SKN_PJT/3rd_project/backend/app.py:41 - Unhandled exception: 'ConversationCreate' object has no attribute 'metadata'
+Traceback (most recent call last):
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/middleware/errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/middleware/cors.py", line 93, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/middleware/cors.py", line 144, in simple_response
+    await self.app(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/middleware/exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/routing.py", line 714, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/routing.py", line 734, in app
+    await route.handle(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/routing.py", line 73, in app
+    response = await f(request)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/fastapi/routing.py", line 301, in app
+    raw_response = await run_endpoint_function(
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/fastapi/routing.py", line 212, in run_endpoint_function
+    return await dependant.call(**values)
+  File "/Users/comet39/SKN_PJT/3rd_project/backend/api/chat.py", line 57, in create_conversation
+    metadata=data.metadata
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pydantic/main.py", line 989, in __getattr__
+    raise AttributeError(f'{type(self).__name__!r} object has no attribute {item!r}')
+AttributeError: 'ConversationCreate' object has no attribute 'metadata'
+2025-05-12 17:17:34 - root - ERROR - /Users/comet39/SKN_PJT/3rd_project/backend/app.py:41 - Unhandled exception: 'ConversationCreate' object has no attribute 'metadata'
+Traceback (most recent call last):
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/middleware/errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/middleware/cors.py", line 93, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/middleware/cors.py", line 144, in simple_response
+    await self.app(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/middleware/exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/routing.py", line 714, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/routing.py", line 734, in app
+    await route.handle(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/routing.py", line 73, in app
+    response = await f(request)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/fastapi/routing.py", line 301, in app
+    raw_response = await run_endpoint_function(
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/fastapi/routing.py", line 212, in run_endpoint_function
+    return await dependant.call(**values)
+  File "/Users/comet39/SKN_PJT/3rd_project/backend/api/chat.py", line 57, in create_conversation
+    metadata=data.metadata
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/pydantic/main.py", line 989, in __getattr__
+    raise AttributeError(f'{type(self).__name__!r} object has no attribute {item!r}')
+AttributeError: 'ConversationCreate' object has no attribute 'metadata'
+2025-05-12 17:30:06 - httpx - INFO - /opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/httpx/_client.py:1013 - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-12 17:30:06 - modules.rag.context_builder - INFO - /Users/comet39/SKN_PJT/3rd_project/backend/modules/rag/context_builder.py:120 - Built context with 0 tokens from 0 chunks
+2025-05-12 17:30:10 - root - ERROR - /Users/comet39/SKN_PJT/3rd_project/backend/app.py:41 - Unhandled exception: RetryError[<Future at 0x166903a00 state=finished raised AttributeError>]
+Traceback (most recent call last):
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/tenacity/_asyncio.py", line 50, in __call__
+    result = await fn(*args, **kwargs)
+  File "/Users/comet39/SKN_PJT/3rd_project/backend/modules/llm/interface.py", line 111, in generate_response
+    return await self._generate_gemini_response(messages)
+AttributeError: 'LLMInterface' object has no attribute '_generate_gemini_response'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/middleware/errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/middleware/cors.py", line 93, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/middleware/cors.py", line 144, in simple_response
+    await self.app(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/middleware/exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/routing.py", line 714, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/routing.py", line 734, in app
+    await route.handle(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/routing.py", line 73, in app
+    response = await f(request)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/fastapi/routing.py", line 301, in app
+    raw_response = await run_endpoint_function(
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/fastapi/routing.py", line 212, in run_endpoint_function
+    return await dependant.call(**values)
+  File "/Users/comet39/SKN_PJT/3rd_project/backend/api/chat.py", line 139, in process_message
+    response_text = await llm.generate_response(
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/tenacity/_asyncio.py", line 88, in async_wrapped
+    return await fn(*args, **kwargs)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/tenacity/_asyncio.py", line 47, in __call__
+    do = self.iter(retry_state=retry_state)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/tenacity/__init__.py", line 326, in iter
+    raise retry_exc from fut.exception()
+tenacity.RetryError: RetryError[<Future at 0x166903a00 state=finished raised AttributeError>]
+2025-05-12 17:31:14 - httpx - INFO - /opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/httpx/_client.py:1013 - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-12 17:31:14 - modules.rag.context_builder - INFO - /Users/comet39/SKN_PJT/3rd_project/backend/modules/rag/context_builder.py:120 - Built context with 0 tokens from 0 chunks
+2025-05-12 17:31:18 - root - ERROR - /Users/comet39/SKN_PJT/3rd_project/backend/app.py:41 - Unhandled exception: RetryError[<Future at 0x166b9acd0 state=finished raised AttributeError>]
+Traceback (most recent call last):
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/tenacity/_asyncio.py", line 50, in __call__
+    result = await fn(*args, **kwargs)
+  File "/Users/comet39/SKN_PJT/3rd_project/backend/modules/llm/interface.py", line 111, in generate_response
+    return await self._generate_gemini_response(messages)
+AttributeError: 'LLMInterface' object has no attribute '_generate_gemini_response'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/middleware/errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/middleware/cors.py", line 93, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/middleware/cors.py", line 144, in simple_response
+    await self.app(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/middleware/exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/routing.py", line 714, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/routing.py", line 734, in app
+    await route.handle(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/routing.py", line 73, in app
+    response = await f(request)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/fastapi/routing.py", line 301, in app
+    raw_response = await run_endpoint_function(
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/fastapi/routing.py", line 212, in run_endpoint_function
+    return await dependant.call(**values)
+  File "/Users/comet39/SKN_PJT/3rd_project/backend/api/chat.py", line 139, in process_message
+    response_text = await llm.generate_response(
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/tenacity/_asyncio.py", line 88, in async_wrapped
+    return await fn(*args, **kwargs)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/tenacity/_asyncio.py", line 47, in __call__
+    do = self.iter(retry_state=retry_state)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/tenacity/__init__.py", line 326, in iter
+    raise retry_exc from fut.exception()
+tenacity.RetryError: RetryError[<Future at 0x166b9acd0 state=finished raised AttributeError>]
+2025-05-12 17:32:17 - httpx - INFO - /opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/httpx/_client.py:1013 - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-12 17:32:17 - modules.rag.context_builder - INFO - /Users/comet39/SKN_PJT/3rd_project/backend/modules/rag/context_builder.py:120 - Built context with 0 tokens from 0 chunks
+2025-05-12 17:32:21 - root - ERROR - /Users/comet39/SKN_PJT/3rd_project/backend/app.py:41 - Unhandled exception: RetryError[<Future at 0x166b3abb0 state=finished raised AttributeError>]
+Traceback (most recent call last):
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/tenacity/_asyncio.py", line 50, in __call__
+    result = await fn(*args, **kwargs)
+  File "/Users/comet39/SKN_PJT/3rd_project/backend/modules/llm/interface.py", line 111, in generate_response
+    return await self._generate_gemini_response(messages)
+AttributeError: 'LLMInterface' object has no attribute '_generate_gemini_response'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/middleware/errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/middleware/cors.py", line 93, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/middleware/cors.py", line 144, in simple_response
+    await self.app(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/middleware/exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/routing.py", line 714, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/routing.py", line 734, in app
+    await route.handle(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/routing.py", line 73, in app
+    response = await f(request)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/fastapi/routing.py", line 301, in app
+    raw_response = await run_endpoint_function(
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/fastapi/routing.py", line 212, in run_endpoint_function
+    return await dependant.call(**values)
+  File "/Users/comet39/SKN_PJT/3rd_project/backend/api/chat.py", line 139, in process_message
+    response_text = await llm.generate_response(
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/tenacity/_asyncio.py", line 88, in async_wrapped
+    return await fn(*args, **kwargs)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/tenacity/_asyncio.py", line 47, in __call__
+    do = self.iter(retry_state=retry_state)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/tenacity/__init__.py", line 326, in iter
+    raise retry_exc from fut.exception()
+tenacity.RetryError: RetryError[<Future at 0x166b3abb0 state=finished raised AttributeError>]
+2025-05-12 17:36:35 - httpx - INFO - /opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/httpx/_client.py:1013 - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-12 17:36:35 - modules.rag.context_builder - INFO - /Users/comet39/SKN_PJT/3rd_project/backend/modules/rag/context_builder.py:120 - Built context with 0 tokens from 0 chunks
+2025-05-12 17:36:39 - root - ERROR - /Users/comet39/SKN_PJT/3rd_project/backend/app.py:41 - Unhandled exception: RetryError[<Future at 0x166946fd0 state=finished raised AttributeError>]
+Traceback (most recent call last):
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/tenacity/_asyncio.py", line 50, in __call__
+    result = await fn(*args, **kwargs)
+  File "/Users/comet39/SKN_PJT/3rd_project/backend/modules/llm/interface.py", line 111, in generate_response
+    return await self._generate_gemini_response(messages)
+AttributeError: 'LLMInterface' object has no attribute '_generate_gemini_response'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/middleware/errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/middleware/cors.py", line 93, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/middleware/cors.py", line 144, in simple_response
+    await self.app(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/middleware/exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/routing.py", line 714, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/routing.py", line 734, in app
+    await route.handle(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/routing.py", line 73, in app
+    response = await f(request)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/fastapi/routing.py", line 301, in app
+    raw_response = await run_endpoint_function(
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/fastapi/routing.py", line 212, in run_endpoint_function
+    return await dependant.call(**values)
+  File "/Users/comet39/SKN_PJT/3rd_project/backend/api/chat.py", line 139, in process_message
+    response_text = await llm.generate_response(
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/tenacity/_asyncio.py", line 88, in async_wrapped
+    return await fn(*args, **kwargs)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/tenacity/_asyncio.py", line 47, in __call__
+    do = self.iter(retry_state=retry_state)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/tenacity/__init__.py", line 326, in iter
+    raise retry_exc from fut.exception()
+tenacity.RetryError: RetryError[<Future at 0x166946fd0 state=finished raised AttributeError>]
+2025-05-12 17:47:20 - httpx - INFO - /opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/httpx/_client.py:1013 - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-12 17:47:21 - modules.rag.context_builder - INFO - /Users/comet39/SKN_PJT/3rd_project/backend/modules/rag/context_builder.py:120 - Built context with 0 tokens from 0 chunks
+2025-05-12 17:47:25 - root - ERROR - /Users/comet39/SKN_PJT/3rd_project/backend/app.py:41 - Unhandled exception: RetryError[<Future at 0x16663ba30 state=finished raised AttributeError>]
+Traceback (most recent call last):
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/tenacity/_asyncio.py", line 50, in __call__
+    result = await fn(*args, **kwargs)
+  File "/Users/comet39/SKN_PJT/3rd_project/backend/modules/llm/interface.py", line 111, in generate_response
+    return await self._generate_gemini_response(messages)
+AttributeError: 'LLMInterface' object has no attribute '_generate_gemini_response'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/middleware/errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/middleware/cors.py", line 93, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/middleware/cors.py", line 144, in simple_response
+    await self.app(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/middleware/exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/routing.py", line 714, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/routing.py", line 734, in app
+    await route.handle(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/routing.py", line 73, in app
+    response = await f(request)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/fastapi/routing.py", line 301, in app
+    raw_response = await run_endpoint_function(
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/fastapi/routing.py", line 212, in run_endpoint_function
+    return await dependant.call(**values)
+  File "/Users/comet39/SKN_PJT/3rd_project/backend/api/chat.py", line 139, in process_message
+    response_text = await llm.generate_response(
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/tenacity/_asyncio.py", line 88, in async_wrapped
+    return await fn(*args, **kwargs)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/tenacity/_asyncio.py", line 47, in __call__
+    do = self.iter(retry_state=retry_state)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/tenacity/__init__.py", line 326, in iter
+    raise retry_exc from fut.exception()
+tenacity.RetryError: RetryError[<Future at 0x16663ba30 state=finished raised AttributeError>]
+2025-05-12 17:47:30 - httpx - INFO - /opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/httpx/_client.py:1013 - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-12 17:47:30 - modules.rag.context_builder - INFO - /Users/comet39/SKN_PJT/3rd_project/backend/modules/rag/context_builder.py:120 - Built context with 0 tokens from 0 chunks
+2025-05-12 17:47:34 - root - ERROR - /Users/comet39/SKN_PJT/3rd_project/backend/app.py:41 - Unhandled exception: RetryError[<Future at 0x1688db0d0 state=finished raised AttributeError>]
+Traceback (most recent call last):
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/tenacity/_asyncio.py", line 50, in __call__
+    result = await fn(*args, **kwargs)
+  File "/Users/comet39/SKN_PJT/3rd_project/backend/modules/llm/interface.py", line 111, in generate_response
+    return await self._generate_gemini_response(messages)
+AttributeError: 'LLMInterface' object has no attribute '_generate_gemini_response'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/middleware/errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/middleware/cors.py", line 93, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/middleware/cors.py", line 144, in simple_response
+    await self.app(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/middleware/exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/routing.py", line 714, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/routing.py", line 734, in app
+    await route.handle(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/routing.py", line 73, in app
+    response = await f(request)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/fastapi/routing.py", line 301, in app
+    raw_response = await run_endpoint_function(
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/fastapi/routing.py", line 212, in run_endpoint_function
+    return await dependant.call(**values)
+  File "/Users/comet39/SKN_PJT/3rd_project/backend/api/chat.py", line 139, in process_message
+    response_text = await llm.generate_response(
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/tenacity/_asyncio.py", line 88, in async_wrapped
+    return await fn(*args, **kwargs)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/tenacity/_asyncio.py", line 47, in __call__
+    do = self.iter(retry_state=retry_state)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/tenacity/__init__.py", line 326, in iter
+    raise retry_exc from fut.exception()
+tenacity.RetryError: RetryError[<Future at 0x1688db0d0 state=finished raised AttributeError>]
+2025-05-12 17:47:47 - httpx - INFO - /opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/httpx/_client.py:1013 - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-12 17:47:47 - modules.rag.context_builder - INFO - /Users/comet39/SKN_PJT/3rd_project/backend/modules/rag/context_builder.py:120 - Built context with 0 tokens from 0 chunks
+2025-05-12 17:47:51 - root - ERROR - /Users/comet39/SKN_PJT/3rd_project/backend/app.py:41 - Unhandled exception: RetryError[<Future at 0x1688db9d0 state=finished raised AttributeError>]
+Traceback (most recent call last):
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/tenacity/_asyncio.py", line 50, in __call__
+    result = await fn(*args, **kwargs)
+  File "/Users/comet39/SKN_PJT/3rd_project/backend/modules/llm/interface.py", line 111, in generate_response
+    return await self._generate_gemini_response(messages)
+AttributeError: 'LLMInterface' object has no attribute '_generate_gemini_response'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/middleware/errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/middleware/cors.py", line 93, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/middleware/cors.py", line 144, in simple_response
+    await self.app(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/middleware/exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/routing.py", line 714, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/routing.py", line 734, in app
+    await route.handle(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/routing.py", line 73, in app
+    response = await f(request)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/fastapi/routing.py", line 301, in app
+    raw_response = await run_endpoint_function(
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/fastapi/routing.py", line 212, in run_endpoint_function
+    return await dependant.call(**values)
+  File "/Users/comet39/SKN_PJT/3rd_project/backend/api/chat.py", line 139, in process_message
+    response_text = await llm.generate_response(
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/tenacity/_asyncio.py", line 88, in async_wrapped
+    return await fn(*args, **kwargs)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/tenacity/_asyncio.py", line 47, in __call__
+    do = self.iter(retry_state=retry_state)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/tenacity/__init__.py", line 326, in iter
+    raise retry_exc from fut.exception()
+tenacity.RetryError: RetryError[<Future at 0x1688db9d0 state=finished raised AttributeError>]
+2025-05-12 17:47:54 - httpx - INFO - /opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/httpx/_client.py:1013 - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-12 17:47:54 - modules.rag.context_builder - INFO - /Users/comet39/SKN_PJT/3rd_project/backend/modules/rag/context_builder.py:120 - Built context with 0 tokens from 0 chunks
+2025-05-12 17:47:59 - root - ERROR - /Users/comet39/SKN_PJT/3rd_project/backend/app.py:41 - Unhandled exception: RetryError[<Future at 0x1688e8a30 state=finished raised AttributeError>]
+Traceback (most recent call last):
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/tenacity/_asyncio.py", line 50, in __call__
+    result = await fn(*args, **kwargs)
+  File "/Users/comet39/SKN_PJT/3rd_project/backend/modules/llm/interface.py", line 111, in generate_response
+    return await self._generate_gemini_response(messages)
+AttributeError: 'LLMInterface' object has no attribute '_generate_gemini_response'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/middleware/errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/middleware/cors.py", line 93, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/middleware/cors.py", line 144, in simple_response
+    await self.app(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/middleware/exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/routing.py", line 714, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/routing.py", line 734, in app
+    await route.handle(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/routing.py", line 73, in app
+    response = await f(request)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/fastapi/routing.py", line 301, in app
+    raw_response = await run_endpoint_function(
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/fastapi/routing.py", line 212, in run_endpoint_function
+    return await dependant.call(**values)
+  File "/Users/comet39/SKN_PJT/3rd_project/backend/api/chat.py", line 139, in process_message
+    response_text = await llm.generate_response(
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/tenacity/_asyncio.py", line 88, in async_wrapped
+    return await fn(*args, **kwargs)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/tenacity/_asyncio.py", line 47, in __call__
+    do = self.iter(retry_state=retry_state)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/tenacity/__init__.py", line 326, in iter
+    raise retry_exc from fut.exception()
+tenacity.RetryError: RetryError[<Future at 0x1688e8a30 state=finished raised AttributeError>]
+2025-05-12 17:49:59 - httpx - INFO - /opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/httpx/_client.py:1013 - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-12 17:49:59 - modules.rag.context_builder - INFO - /Users/comet39/SKN_PJT/3rd_project/backend/modules/rag/context_builder.py:120 - Built context with 0 tokens from 0 chunks
+2025-05-12 17:50:03 - root - ERROR - /Users/comet39/SKN_PJT/3rd_project/backend/app.py:41 - Unhandled exception: RetryError[<Future at 0x1688ef190 state=finished raised AttributeError>]
+Traceback (most recent call last):
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/tenacity/_asyncio.py", line 50, in __call__
+    result = await fn(*args, **kwargs)
+  File "/Users/comet39/SKN_PJT/3rd_project/backend/modules/llm/interface.py", line 111, in generate_response
+    return await self._generate_gemini_response(messages)
+AttributeError: 'LLMInterface' object has no attribute '_generate_gemini_response'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/middleware/errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/middleware/cors.py", line 93, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/middleware/cors.py", line 144, in simple_response
+    await self.app(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/middleware/exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/routing.py", line 714, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/routing.py", line 734, in app
+    await route.handle(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/routing.py", line 73, in app
+    response = await f(request)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/fastapi/routing.py", line 301, in app
+    raw_response = await run_endpoint_function(
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/fastapi/routing.py", line 212, in run_endpoint_function
+    return await dependant.call(**values)
+  File "/Users/comet39/SKN_PJT/3rd_project/backend/api/chat.py", line 139, in process_message
+    response_text = await llm.generate_response(
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/tenacity/_asyncio.py", line 88, in async_wrapped
+    return await fn(*args, **kwargs)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/tenacity/_asyncio.py", line 47, in __call__
+    do = self.iter(retry_state=retry_state)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/tenacity/__init__.py", line 326, in iter
+    raise retry_exc from fut.exception()
+tenacity.RetryError: RetryError[<Future at 0x1688ef190 state=finished raised AttributeError>]
+2025-05-12 17:50:15 - httpx - INFO - /opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/httpx/_client.py:1013 - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-12 17:50:15 - modules.rag.context_builder - INFO - /Users/comet39/SKN_PJT/3rd_project/backend/modules/rag/context_builder.py:120 - Built context with 0 tokens from 0 chunks
+2025-05-12 17:50:19 - root - ERROR - /Users/comet39/SKN_PJT/3rd_project/backend/app.py:41 - Unhandled exception: RetryError[<Future at 0x1688efca0 state=finished raised AttributeError>]
+Traceback (most recent call last):
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/tenacity/_asyncio.py", line 50, in __call__
+    result = await fn(*args, **kwargs)
+  File "/Users/comet39/SKN_PJT/3rd_project/backend/modules/llm/interface.py", line 111, in generate_response
+    return await self._generate_gemini_response(messages)
+AttributeError: 'LLMInterface' object has no attribute '_generate_gemini_response'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/middleware/errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/middleware/cors.py", line 93, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/middleware/cors.py", line 144, in simple_response
+    await self.app(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/middleware/exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/routing.py", line 714, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/routing.py", line 734, in app
+    await route.handle(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/routing.py", line 73, in app
+    response = await f(request)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/fastapi/routing.py", line 301, in app
+    raw_response = await run_endpoint_function(
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/fastapi/routing.py", line 212, in run_endpoint_function
+    return await dependant.call(**values)
+  File "/Users/comet39/SKN_PJT/3rd_project/backend/api/chat.py", line 139, in process_message
+    response_text = await llm.generate_response(
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/tenacity/_asyncio.py", line 88, in async_wrapped
+    return await fn(*args, **kwargs)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/tenacity/_asyncio.py", line 47, in __call__
+    do = self.iter(retry_state=retry_state)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/tenacity/__init__.py", line 326, in iter
+    raise retry_exc from fut.exception()
+tenacity.RetryError: RetryError[<Future at 0x1688efca0 state=finished raised AttributeError>]
+2025-05-12 17:57:42 - httpx - INFO - /opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/httpx/_client.py:1013 - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-05-12 17:57:42 - modules.rag.context_builder - INFO - /Users/comet39/SKN_PJT/3rd_project/backend/modules/rag/context_builder.py:120 - Built context with 0 tokens from 0 chunks
+2025-05-12 17:57:46 - root - ERROR - /Users/comet39/SKN_PJT/3rd_project/backend/app.py:41 - Unhandled exception: RetryError[<Future at 0x1688fafd0 state=finished raised AttributeError>]
+Traceback (most recent call last):
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/tenacity/_asyncio.py", line 50, in __call__
+    result = await fn(*args, **kwargs)
+  File "/Users/comet39/SKN_PJT/3rd_project/backend/modules/llm/interface.py", line 111, in generate_response
+    return await self._generate_gemini_response(messages)
+AttributeError: 'LLMInterface' object has no attribute '_generate_gemini_response'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/middleware/errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/middleware/cors.py", line 93, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/middleware/cors.py", line 144, in simple_response
+    await self.app(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/middleware/exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/routing.py", line 714, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/routing.py", line 734, in app
+    await route.handle(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/starlette/routing.py", line 73, in app
+    response = await f(request)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/fastapi/routing.py", line 301, in app
+    raw_response = await run_endpoint_function(
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/fastapi/routing.py", line 212, in run_endpoint_function
+    return await dependant.call(**values)
+  File "/Users/comet39/SKN_PJT/3rd_project/backend/api/chat.py", line 139, in process_message
+    response_text = await llm.generate_response(
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/tenacity/_asyncio.py", line 88, in async_wrapped
+    return await fn(*args, **kwargs)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/tenacity/_asyncio.py", line 47, in __call__
+    do = self.iter(retry_state=retry_state)
+  File "/opt/anaconda3/envs/3rd_env/lib/python3.9/site-packages/tenacity/__init__.py", line 326, in iter
+    raise retry_exc from fut.exception()
+tenacity.RetryError: RetryError[<Future at 0x1688fafd0 state=finished raised AttributeError>]
